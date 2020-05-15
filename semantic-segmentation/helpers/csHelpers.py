@@ -48,7 +48,7 @@ def getColorEntry(val, args):
 # <city>_<sequenceNb>_<frameNb>_<type>[_<type2>].<ext>
 # This class contains the individual elements as members
 # For the sequence and frame number, the strings are returned, including leading zeros
-CsFile = namedtuple( 'csFile' , [ 'city' , 'sequenceNb' , 'frameNb' , 'type' , 'type2' , 'ext' ] )
+CsFile = namedtuple( 'csFile' , [ 'city' , 'sequenceNb' , 'frameNb' , 'ext' ] )
 
 # Returns a CsFile object filled from the info in the given filename
 def getCsFileInfo(fileName):
@@ -57,12 +57,12 @@ def getCsFileInfo(fileName):
     parts = parts[:-1] + parts[-1].split('.')
     if not parts:
         printError( 'Cannot parse given filename ({}). Does not seem to be a valid Cityscapes file.'.format(fileName) )
-    if len(parts) == 5:
-        csFile = CsFile( *parts[:-1] , type2="" , ext=parts[-1] )
-    elif len(parts) == 6:
+    if len(parts) == 4:
+        csFile = CsFile( *parts[:-1] , ext=parts[-1] )
+    elif len(parts) == 5:
         csFile = CsFile( *parts )
     else:
-        printError( 'Found {} part(s) in given filename ({}). Expected 5 or 6.'.format(len(parts) , fileName) )
+        printError( 'Found {} part(s) in given filename ({}). Expected 4 or 5.'.format(len(parts) , fileName) )
 
     return csFile
 

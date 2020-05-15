@@ -603,7 +603,7 @@ def main():
     # Parse optional arguments
     pargs = parser.parse_args()
     # Parameters that should be modified by user
-    args.groundTruthSearch  = os.path.join(pargs.minicity , 'gtFine' , 'val' , '*_gtFine_labelIds.png')
+    args.groundTruthSearch  = os.path.join(pargs.minicity , 'gtFine' , 'val' , '*.png')
 
     predictionImgList = []
     groundTruthImgList = []
